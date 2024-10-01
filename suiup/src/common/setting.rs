@@ -17,6 +17,10 @@ impl<'a> Setting<'a> {
     pub fn new(current_toolkit: &'a str) -> Self {
         Self { current_toolkit }
     }
+
+    pub fn current(&self) -> &'a str {
+        self.current_toolkit
+    }
 }
 
 pub async fn write_setting<P: AsRef<Path>>(desc: &SuiAssetDesc, path: P) -> Result<()> {
@@ -25,7 +29,6 @@ pub async fn write_setting<P: AsRef<Path>>(desc: &SuiAssetDesc, path: P) -> Resu
     }
     let setting_file = PathBuf::from(path.as_ref()).join("setting.json");
     let file = File::create(setting_file)?;
-
     let mut writer = BufWriter::new(file);
     serde_json::to_writer_pretty(&mut writer, &Setting::new(&desc.desc()))?;
     writer.flush()?;
@@ -33,7 +36,12 @@ pub async fn write_setting<P: AsRef<Path>>(desc: &SuiAssetDesc, path: P) -> Resu
 }
 
 pub async fn set_symlink<P: AsRef<Path>>(src: P, dst: P) -> Result<()> {
-    if dst.as_ref().exists() {
+    println!(
+        "Symlink from: {} to: {}",
+        src.as_ref().display(),
+        dst.as_ref().display()
+    );
+    if dst.as_ref().is_symlink() {
         std::fs::remove_dir_all(&dst)?;
     }
     #[cfg(unix)]

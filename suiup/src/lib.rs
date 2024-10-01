@@ -7,7 +7,7 @@ pub(crate) mod common;
 
 use anstyle::{AnsiColor, Color, Style};
 use clap::{builder::Styles, Args, Parser};
-use subcommand::{config, default, list, update};
+use subcommand::{config, default, list, remove, update};
 use sui_assets_info::prelude::{BackEnd, GithubBackend, Network};
 
 const HEADER_COLOR: Option<Color> = Some(Color::Ansi(AnsiColor::BrightBlue));
@@ -46,6 +46,17 @@ enum Subcommand {
         #[command(flatten)]
         opt: LatestOpt,
     },
+    #[command(about = "Remove a toolkit from your environment")]
+    Remove {
+        #[command(flatten)]
+        opt: RemoveOpt,
+    },
+}
+
+#[derive(Debug, Args)]
+struct RemoveOpt {
+    #[arg(required = true)]
+    desc: String,
 }
 
 #[derive(Debug, Args)]
@@ -92,6 +103,7 @@ impl Subcommand {
             Self::Default { opt } => default::run(process, opt).await,
             Self::Install { opt } => update::run(process, opt).await,
             Self::Latest { opt } => update::run_latest(process, opt).await,
+            Self::Remove { opt } => remove::remove_toolkit(process, opt),
         }
     }
 }
