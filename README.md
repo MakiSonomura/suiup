@@ -22,6 +22,13 @@ Suiup is a version manager for Sui, enabling you to install Sui toolkits directl
    cargo install --path .
    ```
 
+### Agreements
+- On Linux, the default directory for `suiup` is `$HOME/.suiup`, and on Windows, it's `%USERPROFILE%\.suiup`.
+- The `.tgz` file downloaded from the backend (currently GitHub) will be found in `.suiup/download`.
+- The archive will be extracted to `.suiup/toolkites/${desc}`.
+- To use the `sui` command directly, make sure to add `.suiup/bin` to your environment path.
+
+
 ### CLI
 ```text
 Usage: suiup <COMMAND>
@@ -39,7 +46,10 @@ Options:
 
 ```
 
-### Examples:
+
+
+
+### Examples
 
 1. **Install the latest toolkit of mainnet and set it as the default one**
    ```bash
@@ -61,4 +71,8 @@ Options:
 5. **Remove which you donot need**
     ```bash
     suiup remove mainnet-v1.25.3
+    ```
+6. **Show suiup's config**
+    ```bash
+    suiup config
     ```
