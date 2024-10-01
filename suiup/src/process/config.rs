@@ -20,7 +20,7 @@ pub(crate) struct Config<'a> {
 
 fn create_dirs_if_not_exists(paths: &[&PathBuf]) -> Result<()> {
     for path in paths {
-        if !fs::metadata(path).is_ok() {
+        if fs::metadata(path).is_err() {
             fs::create_dir_all(path)?;
         }
     }
