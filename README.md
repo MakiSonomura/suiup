@@ -38,3 +38,27 @@ Options:
   -h, --help  Print help
 
 ```
+
+### Examples:
+
+1. **Install the latest toolkit of mainnet and set it as the default one**
+   ```bash
+   suiup latest --network mainnet 
+   ```
+2. **Install a specific version of sui toolkit and set it as the default one**
+   ```bash
+   suiup install mainnet-v1.25.3
+   ```
+3. **List all toolkits in your system**
+   ```bash
+   suiup list
+   ```
+4. **Change the default toolkit**
+
+   ```bash
+   suiup default testnet-v1.34.1
+   ```
+5. **Remove which you donot need**
+    ```bash
+    suiup remove mainnet-v1.25.3
+    ```
