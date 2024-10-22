@@ -1,6 +1,6 @@
-# Suiup
+W# Suiup
 
-Suiup is a version manager for Sui, enabling you to install Sui toolkits directly from GitHub releases. It allows for easy management of multiple Sui versions and will soon support downloading binaries from the blockchain. You can run it on Linux/Windows/MacOS
+Suiup is a version manager for Sui, enabling you to install Sui toolkits directly from GitHub releases. It allows for easy management of multiple Sui versions and will soon support downloading binaries from Walrus. You can run it on Linux/Windows/MacOS
 ## Usage
 
 ### Installation
